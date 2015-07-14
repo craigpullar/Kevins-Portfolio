@@ -1,0 +1,33 @@
+<head>
+  <title>Kevins-Portfolio</title>
+</head>
+
+<body>
+   <div class="bg-wrapper">
+      <img class="landing-bg" src="header_bg.jpg" />
+         <nav>
+            <div class="nav-wrapper">
+         <!-- <a href="#" class="brand-logo right">Pictures of Lily</a> -->
+         <ul id="nav-mobile" class="left hide-on-med-and-down">
+          <li><a href="sass.html">Sass</a></li>
+          <li><a href="badges.html">Components</a></li>
+          <li><a href="collapsible.html">JavaScript</a></li>
+         </ul>
+            </div>
+         </nav>
+      </div>
+      <div class="image-wrapper">
+         {{ >imageGallery}}
+      </div>
+</body>
+<template name="imageGallery">
+   <div class="grid teal lighten-2">
+        <div class="grid-sizer"></div>
+     <div class="grid-item"><img src="1.jpg"/></div>
+     <div class="grid-item grid-item--width2"><img src="2.jpg"/></div>
+     <div class="grid-item"><img src="3.jpg"/></div>
+     <div class="grid-item"><img src="4.jpg"/></div>
+     <div class="grid-item grid-item--width2"><img src="5.jpg"/></div>
+     <div class="grid-item"><img src="6.jpg"/></div>
+   </div>
+</template>

@@ -1,0 +1,41 @@
+/* CSS declarations go here */
+@import url(http://fonts.googleapis.com/css?family=Roboto);
+
+img.landing-bg {
+   position: relative;
+   top:-100px;
+   left:0px;
+   width:100%;
+
+}
+div.bg-wrapper {
+   overflow:hidden;
+   position: absolute;
+   width:100%;
+   top:0px;
+   left:0px;
+}
+nav{
+   position:absolute;
+   bottom:0px;
+   width:100%;
+   left:0px;
+   height:60px;
+}
+
+.grid{
+   position:relative;
+   width:100%;
+}
+.grid-sizer,
+.grid-item {
+width: 20%;
+   }
+.grid-item img{
+      width:100%;
+      display: block;
+   }
+/* 2 columns */
+.grid-item--width2 {
+   width:40%;
+   }

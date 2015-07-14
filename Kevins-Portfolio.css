@@ -3,9 +3,8 @@
 
 img.landing-bg {
    position: relative;
-   top:-100px;
    left:0px;
-   width:100%;
+   min-width:100%;
 
 }
 div.bg-wrapper {

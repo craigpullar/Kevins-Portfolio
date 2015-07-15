@@ -1,5 +1,6 @@
 /* CSS declarations go here */
 @import url(http://fonts.googleapis.com/css?family=Roboto);
+@import url(http://fonts.googleapis.com/css?family=Righteous);
 
 img.landing-bg {
    position: relative;
@@ -9,17 +10,41 @@ img.landing-bg {
 }
 div.bg-wrapper {
    overflow:hidden;
-   position: absolute;
+   position: relative;
    width:100%;
-   top:0px;
    left:0px;
 }
-nav{
+.bg-wrapper h1 {
    position:absolute;
+   left:40px;
    bottom:0px;
+   text-align:center;
+   z-index:23;
+   color:#333;
+   font-family: 'Righteous', cursive;
+   padding:20px;
+   width:30%;
+   color:#424242;
+   font-size:2em;
+}
+.bg-wrapper h1 span{
+      font-size:2.5em;
+      line-height:60px;
+}
+nav{
+   position:relative;
    width:100%;
    left:0px;
-   height:60px;
+   height:70px;
+   margin-top:-5px;
+}
+nav ul li {
+   padding-left:20px;
+   padding-right:20px;
+}
+#nav-mobile li a, a.brand-logo{
+      color:#424242!important;
+   font-weight:400px;
 }
 
 .grid{

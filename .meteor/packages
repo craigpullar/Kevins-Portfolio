@@ -14,3 +14,4 @@ iron:router
 zimme:active-route
 ephemer:reactive-datatables
 momentjs:moment
+cfs:standard-packages

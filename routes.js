@@ -86,6 +86,9 @@ Router.route('admin/dashboard', {
 	controller: 'adminController',
 	action: 'dashboard'
 });
+
+/* POST ROUTES */
+
 Router.route('admin/new-post', {
 	after: function() {
 		document.title = 'new post | Pictures of Lily'
@@ -100,6 +103,25 @@ Router.route('admin/new-post', {
 		return templateData;
 	}
 });
+Router.route('admin/edit-post/:_id', {
+	after: function() {
+		document.title = 'edit post | Pictures of Lily'
+	},
+	controller: 'adminController',
+	action: 'editPost',
+	data: function (){
+		_id  = this.params._id;
+		templateData = {
+			_id: _id,
+			post: Posts.findOne({_id: _id}),
+			action: 'edit',
+		};
+		return templateData;
+	}
+});
+
+/* GALLERY ROUTES */
+
 Router.route('admin/new-gallery/:type', {
 	after: function() {
 		document.title = 'new gallery | Pictures of Lily'
@@ -131,22 +153,10 @@ Router.route('admin/edit-gallery/:_id', {
 		return templateData;
 	}
 });
-Router.route('admin/edit-post/:_id', {
-	after: function() {
-		document.title = 'edit post | Pictures of Lily'
-	},
-	controller: 'adminController',
-	action: 'editPost',
-	data: function (){
-		_id  = this.params._id;
-		templateData = {
-			_id: _id,
-			post: Posts.findOne({_id: _id}),
-			action: 'edit',
-		};
-		return templateData;
-	}
+Router.route('admin/view-gallery/:_id',{
+
 });
+
 
 /*---------------------*/
 /* END OF ADMIN ROUTES */

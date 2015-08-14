@@ -1,0 +1,23 @@
+form.login {
+	position:absolute;
+	width:50%;
+	text-align:center;
+	top:50%;
+	margin-top:-100px;
+	left:50%;
+	margin-left:-25%;
+	padding:20px 0px;
+}
+#message {
+	width:45%;
+	margin:0px auto;
+	height:auto;
+	position: relative;
+	background:#c0392b;
+	display: none;
+}
+#message p {
+	color:#fff;
+	padding:5px;
+	font-size:0.8em;
+}

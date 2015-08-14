@@ -1,0 +1,36 @@
+<template name="admin_weddings">
+	<a id="add_gallery_button" class="ghost-button">+ Add Gallery</a>
+	<table class="blog">
+		<th>Gallery Title</th>
+		<th>Date</th>
+		<th>Image Count</th>
+		<th>Edit Action</th>
+		<th>Delete Action</th>
+		{{#each Galleries}}
+		{{> admin_gallery}}
+		{{/each}}
+	</table>
+</template>
+<template name="admin_portraits">
+	<a id="add_gallery_button" class="ghost-button">+ Add Gallery</a>
+	<table class="blog">
+		<th>Gallery Title</th>
+		<th>Date</th>
+		<th>Image Count</th>
+		<th>Edit Action</th>
+		<th>Delete Action</th>
+		{{#each Galleries}}
+		{{> admin_gallery}}
+		{{/each}}
+	</table>
+</template>
+<template name="admin_gallery">
+	<tr>
+		<td>{{title}}</td>
+		<td>{{formatDate date}}</td>
+		<td>{{image_count}}</td>
+		<td class="edit">edit</td>
+		<td class="delete">delete</td>
+	</tr>
+
+</template>

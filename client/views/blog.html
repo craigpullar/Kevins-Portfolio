@@ -1,0 +1,14 @@
+<template name="blog">
+	<h1 class="mobile">Blog</h1>
+	{{#each posts}}
+	{{ > blog_post}}
+	{{/each}}
+</template>
+
+<template name="blog_post">
+	<div class="blog-post card content">
+		<h1>{{title}}</h1>
+		<h5>Posted {{formatDate createdAt}}</h5>
+		<p>{{content}}</p>
+	</div>
+</template>

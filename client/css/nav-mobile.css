@@ -1,0 +1,34 @@
+@media only screen and (max-width:770px) {
+	nav{
+		display:none;
+		width:250px;
+		position:fixed;
+		height:100%;
+		left:0px;
+		top:0px;
+		-webkit-box-shadow: 13px 0px 28px -21px rgba(0,0,0,0.75);
+		-moz-box-shadow: 13px 0px 28px -21px rgba(0,0,0,0.75);
+		box-shadow: 13px 0px 28px -21px rgba(0,0,0,0.75);
+	}
+	nav h1 {
+		position:relative;
+		text-align:center;
+		top:0px;
+		bottom:none;
+	}
+	nav ul {
+		padding-left:0px;
+		position:relative;
+		text-align:center;
+	}
+	nav li {
+		display:block;
+		padding:20px 20px;
+	}
+	i#mobile-menu-icon {
+		display:block!important;
+	}
+	#wrapper {
+		top:20px!important;
+	}
+}

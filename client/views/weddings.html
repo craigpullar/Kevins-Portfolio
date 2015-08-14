@@ -1,0 +1,35 @@
+<template name="weddings">
+	<h1 class="mobile">Weddings</h1>
+	{{ > wedding_nav}}
+	{{ > pricing}}
+	{{ > wedding_galleries}}
+
+</template>
+<template name="wedding_nav">
+	<div id="wedding-nav">
+		<a id="galleries" class="active ghost-button" >Galleries</a>
+		<a id="pricing" class="ghost-button">Pricing &amp; Info</a>
+	</div>
+</template>
+<template name="pricing">
+	<div id="pricing-content" class="card content">
+		<h1>Wedding Pricing</h1>
+		<p>
+			Suspendisse dictum maximus est. Praesent a facilisis diam, sed feugiat dolor. Nulla ullamcorper iaculis vulputate. Vivamus volutpat tellus vitae dolor feugiat, dignissim faucibus augue elementum. Donec metus ligula, cursus quis consectetur a, fermentum et velit. Cras molestie ipsum arcu, at iaculis libero consequat in. Aenean ornare quam lacus, scelerisque facilisis sapien suscipit in. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse congue nulla enim, molestie posuere mi tempor in. Curabitur fermentum volutpat vehicula. Nam quis magna id risus rutrum condimentum sed at lectus. Cras facilisis risus et auctor pharetra. Sed ut lorem ex.
+		</p>
+	</div>
+</template>
+<template name="wedding_galleries">
+	<div id="weddings-container">
+		<div class="grid-sizer"></div>
+		<div class="result-item">
+			<img src="weddings/1.jpg" />
+		</div>
+		<div class="result-item">
+			<img src="weddings/2.jpg" />
+		</div>
+		<div class="result-item">
+			<img src="weddings/3.jpg" />
+		</div>
+	</div>
+</template>

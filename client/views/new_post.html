@@ -1,0 +1,10 @@
+<template name="newPost">
+	<form class='card new-post' id='{{action}}'>
+		<h1>Write your new post</h1>
+		<input type="text" name="title" placeholder="A good sunday afternoon" value='{{post.title}}'/>
+		<textarea name="content" placeholder='It was a sunday afternoon..'>{{post.content}}</textarea>
+
+		<input type='submit' value='{{action}}' />
+
+	</form>
+</template>

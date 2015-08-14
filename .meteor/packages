@@ -7,6 +7,10 @@
 meteor-platform
 autopublish
 insecure
-materialize:materialize
 sjors:meteor-masonry
 mrt:jquery-imagesloaded
+natestrauser:animate-css
+iron:router
+zimme:active-route
+ephemer:reactive-datatables
+momentjs:moment

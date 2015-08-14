@@ -1,0 +1,21 @@
+<template name="AppLayout">
+	<head>
+		<title>Kevins Portfolio</title>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+		rel="stylesheet">
+	</head>
+
+	<body>
+		<i id="mobile-menu-icon" class="material-icons">menu</i>
+		{{ > nav}}
+		<div id="wrapper">
+
+
+
+			{{ > yield "content"}}
+
+			{{ > footer}}
+		</div>
+	</body>
+</template>
+

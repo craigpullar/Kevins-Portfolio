@@ -58,6 +58,13 @@ Router.route('admin/login', {
 	controller: 'loginController',
 	action: 'showLogin'
 });
+Router.route('admin/logout', {
+	after: function() {
+		document.title = 'login | Pictures of Lily'
+	},
+	controller: 'loginController',
+	action: 'logout'
+});
 Router.route('admin/blog', {
 	after: function() {
 		document.title = 'blog | Pictures of Lily'
@@ -154,7 +161,18 @@ Router.route('admin/edit-gallery/:_id', {
 	}
 });
 Router.route('admin/view-gallery/:_id',{
-
+	after: function() {
+		document.title = 'gallery | Pictures of Lily'
+	},
+	controller: 'adminController',
+	action: 'viewGallery',
+});
+Router.route('admin/new-image', {
+after: function() {
+		document.title = 'new image | Pictures of Lily'
+	},
+	controller: 'adminController',
+	action: 'newImage',
 });
 
 

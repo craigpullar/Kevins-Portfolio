@@ -1,0 +1,25 @@
+<template name='new_image'>
+		<form class='card new-image' id='{{action}}'>
+		<h1>Add your images</h1>
+		<input type="file" name="img" multiple>
+		<input type='submit' value='upload' />
+
+	</form>
+</template>
+<template name="new_gallery">
+	<form class='card new-post' id='{{action}}'>
+		<h1>Name your gallery</h1>
+		<input type="text" name="title" placeholder="A good sunday afternoon" value='{{gallery.title}}'/>
+		<input type='submit' value='{{action}}' />
+	</form>
+</template>
+<template name="newPost">
+	<form class='card new-post' id='{{action}}'>
+		<h1>Add your images</h1>
+		<input type="text" name="title" placeholder="A good sunday afternoon" value='{{post.title}}'/>
+		<textarea name="content" placeholder='It was a sunday afternoon..'>{{post.content}}</textarea>
+
+		<input type='submit' value='{{action}}' />
+
+	</form>
+</template>

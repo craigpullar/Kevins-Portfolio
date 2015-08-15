@@ -18,10 +18,16 @@ if(Meteor.isClient) {
 	var checkLogin = function() {
 		passcode = "kevin123";
 		user_passcode = $('form.login input').val();
-		if (passcode == user_passcode)
+		if (passcode == user_passcode) {
+						Session.set('logged_in',true);
 			Router.go('admin/dashboard');
-		else
+		}
+
+		else{
+			Session.set('logged_in',false);
 			$('div#message').fadeIn();
+		}
+
 	}
 }
 

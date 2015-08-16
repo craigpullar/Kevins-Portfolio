@@ -51,14 +51,14 @@ Router.route('/contact', {
 /* ADMIN ROUTES */
 /*--------------*/
 
-Router.route('admin/login', {
+Router.route('/login', {
 	after: function() {
 		document.title = 'login | Pictures of Lily'
 	},
 	controller: 'loginController',
 	action: 'showLogin'
 });
-Router.route('admin/logout', {
+Router.route('/logout', {
 	after: function() {
 		document.title = 'login | Pictures of Lily'
 	},
@@ -166,15 +166,28 @@ Router.route('admin/view-gallery/:_id',{
 	},
 	controller: 'adminController',
 	action: 'viewGallery',
+	data: function (){
+		_id = this.params._id;
+		templateData = {
+			_id: _id,
+		};
+		return templateData;
+	}
 });
-Router.route('admin/new-image', {
-after: function() {
+Router.route('admin/new-image/:id', {
+	after: function() {
 		document.title = 'new image | Pictures of Lily'
 	},
 	controller: 'adminController',
 	action: 'newImage',
 });
-
+Router.route('admin/image/:id',{
+	after: function() {
+		document.title = 'image | Pictures of Lily'
+	},
+	controller: 'imageController',
+	action: 'viewImage',
+});
 
 /*---------------------*/
 /* END OF ADMIN ROUTES */

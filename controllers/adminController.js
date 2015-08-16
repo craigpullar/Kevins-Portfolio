@@ -4,14 +4,16 @@ if (Meteor.isClient) {
 		
 		onBeforeAction: function (pause) {
 			if(!Session.get('logged_in')){
-				Router.go('admin/login');
+				Router.go('/login');
 				return pause();
 			}
 			else {	
 				this.layout("AdminLayout");
-			this.next();
+				this.next();
 			}
-        },
+			this.layout("AdminLayout");
+			this.next();
+		},
 
 		welcome: function() {
 			this.render('welcome', {to: 'content'});
@@ -38,11 +40,17 @@ if (Meteor.isClient) {
 			this.render('new_gallery', {to:'content'});
 		},
 		viewGallery: function() {
+
 			this.render('admin_gallery', {to:'content'});
 		},
 		newImage: function() {
-			this.render('new_image,', {to:'content'});
+			this.render('new_image', {to:'content'});
 		}
 	});
 
+	imageController = RouteController.extend({
+		viewImage: function() {
+			this.render('view_image');
+		}
+	});
 }

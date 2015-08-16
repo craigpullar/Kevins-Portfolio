@@ -26,7 +26,7 @@
 </template>
 <template name="admin_gallery_row">
 	<tr>
-		<td>{{title}}</td>
+		<td><a class="goToGallery" href='' id="{{_id}}">{{title}}</a></td>
 		<td>{{formatDate date}}</td>
 		<td>{{image_count}}</td>
 		<td class="edit">edit</td>
@@ -34,10 +34,31 @@
 	</tr>
 </template>
 <template name='admin_gallery'>
-<table class='blog'>
-			<th>Image</th>
+	{{#unless imagesForGallery}}
+	<p>error retrieving data</p>
+	{{else}}
+	<a id="add_image_button" href="/admin/new-image/{{ gallery }}" class="ghost-button">+ Add Image</a>
+	<table class='blog'>
+		<th>Image</th>
 		<th>Date</th>
 		<th>Delete Action</th>
-		<!-- LOAD IMAGES -->
-</table>
+		{{#each imagesForGallery}}
+		{{> admin_image_row}}
+		{{/each}}
+	</table>
+	{{/unless}}
+</template>
+<template name="admin_image_row">
+	<tr>
+		<td><a href='/admin/image/{{image._id}}' target="_blank">{{ image._id }}</a></td>
+		<td>{{formatDate uploadedAt}}</td>
+		<td class="delete">delete</td>
+	</tr>
+</template>
+<template name='view_image'>
+	{{#if getImage}}
+	<img src="{{getImage.url store='images' uploading='/images/uploading.gif' storing='/images/storing.gif'}}" alt=""/>
+	{{else}}
+	<p>There was an error getting your image. Try reloading. If that doesn't work ask Craig.</p>
+	{{/if}}
 </template>

@@ -1,6 +1,6 @@
 Posts = new Mongo.Collection("posts");
 if(Meteor.isClient) {
-
+	Meteor.subscribe("posts");
 	Template.admin_blog.events({
 		"click a#add_post_button": function() {
 			Router.go('/admin/new-post');

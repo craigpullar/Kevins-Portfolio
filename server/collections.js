@@ -12,5 +12,17 @@ if(Meteor.isServer) {
     return true;
 }
 });
+	Meteor.publish('gallery_images', function() {
+		return GalleryImages.find(); 
+	});
+	Meteor.publish('galleries', function() {
+		return Galleries.find(); 
+	});
+	Meteor.publish('images', function() {
+		return Images.find(); 
+	});
+	Meteor.publish('posts', function() {
+		return Posts.find(); 
+	});
 }
 

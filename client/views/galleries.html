@@ -1,44 +1,22 @@
-<template name="galleries">
-
-	<h1>Gallery 1</h1>
-	<div id="result-container">
-		<div class="grid-sizer"></div>
-		<div class="result-item">
-			<img src="Gallery_1/1.jpg" />
-		</div>
-		<div class="result-item">
-			<img src="Gallery_1/2.jpg" />
-		</div>
-		<div class="result-item">
-			<img src="Gallery_1/3.jpg" />
+<template name="gallery">
+	<div class="result-item" >
+		<div class='img card' style="background-image:url({{getImage.url store='images' uploading='/images/uploading.gif' storing='/images/storing.gif'}}">
+			<h1>{{title}}</h1>
+			<img src="{{getImage.url store='images' uploading='/images/uploading.gif' storing='/images/storing.gif'}}" style="visibility:hidden"/>
 		</div>
 	</div>
-
-	<h1>Gallery 2</h1>
-	<div id="result-container-2">
-		<div class="grid-sizer"></div>
-		<div class="result-item">
-			<img src="Gallery_2/1.jpg" />
-		</div>
-		<div class="result-item">
-			<img src="Gallery_2/2.jpg" />
-		</div>
-		<div class="result-item">
-			<img src="Gallery_2/3.jpg" />
-		</div>
+</template>
+<template name="gallery_full">
+	<div class="gallery-container">
+		<h1>{{gallery.title}}</h1>
+		{{#each images}}
+		{{> image}}
+		{{/each}}
 	</div>
 
-	<h1>Gallery 3</h1>
-	<div id="result-container-3">
-		<div class="grid-sizer"></div>
-		<div class="result-item">
-			<img src="Gallery_3/1.jpg" />
-		</div>
-		<div class="result-item">
-			<img src="Gallery_3/2.jpg" />
-		</div>
-		<div class="result-item">
-			<img src="Gallery_3/3.jpg" />
-		</div>
+</template>
+<template name="image">
+	<div class="masonry-item">
+		<img class='card' src="{{image.url store='images' uploading='/images/uploading.gif' storing='/images/storing.gif'}}"/>
 	</div>
 </template>

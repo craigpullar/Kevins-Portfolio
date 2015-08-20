@@ -164,16 +164,50 @@ i#mobile-menu-icon:hover {
  cursor: pointer;
 }
 
-.grid-sizer,
+
 .result-item {
  width: 33%;
  box-sizing: border-box;
  padding: 1%;
-
+ float: left;
+}
+.grid-sizer,
+.masonry-item {
+ width: 33%;
+ box-sizing: border-box;
+ padding: 1%;
+ float:left;
+}
+.masonry-item img {
+  width:100%;
+}
+.masonry-item img:hover {
+  cursor:pointer;
+  box-shadow: none;
+}
+#weddings-container {
+  margin-top: 30px;
 }
 
-.result-item img {
-  width: 100%;
+.result-item .img {
+  background-size: cover;
+  box-sizing: border-box;
+  position:relative;
+  background-position: center;
+}
+.result-item .img:hover {
+  cursor:pointer;
+  box-shadow: none;
+}
+.result-item .img h1 {
+  color:#fff;
+  position:absolute;
+  bottom:0px;
+  width:100%;
+  text-align: center;
+}
+.result-item .img img {
+  width:100%;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 h1.mobile {

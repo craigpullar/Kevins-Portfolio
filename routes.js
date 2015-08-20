@@ -39,10 +39,16 @@ Router.route('/contact', {
 	after: function() {
 		document.title = 'Contact | Pictures of Lily'
 	},
-	controller:'appController',
+	controller: 'appController',
 	action: 'contact'
 });
-
+Router.route('/view-gallery/:id', {
+	after: function() {
+		document.title = 'Gallery | Pictures of Lily'
+	},
+	controller: 'appController',
+	action: 'viewGallery'
+});
 /*--------------------*/
 /* END OF SITE ROUTES */
 /*--------------------*/
@@ -86,13 +92,6 @@ Router.route('admin/portraits', {
 	controller: 'adminController',
 	action: 'portaits'
 });
-Router.route('admin/dashboard', {
-	after: function() {
-		document.title = 'dashboard | Pictures of Lily'
-	},
-	controller: 'adminController',
-	action: 'dashboard'
-});
 
 /* POST ROUTES */
 
@@ -102,8 +101,8 @@ Router.route('admin/new-post', {
 	},
 	controller: 'adminController',
 	action: 'newPost',
-	data: function (){
-		_id  = this.params._id;
+	data: function() {
+		_id = this.params._id;
 		templateData = {
 			action: 'post',
 		};
@@ -116,11 +115,13 @@ Router.route('admin/edit-post/:_id', {
 	},
 	controller: 'adminController',
 	action: 'editPost',
-	data: function (){
-		_id  = this.params._id;
+	data: function() {
+		_id = this.params._id;
 		templateData = {
 			_id: _id,
-			post: Posts.findOne({_id: _id}),
+			post: Posts.findOne({
+				_id: _id
+			}),
 			action: 'edit',
 		};
 		return templateData;
@@ -135,7 +136,7 @@ Router.route('admin/new-gallery/:type', {
 	},
 	controller: 'adminController',
 	action: 'newGallery',
-	data: function (){
+	data: function() {
 		type = this.params.type;
 		templateData = {
 			type: type,
@@ -150,23 +151,25 @@ Router.route('admin/edit-gallery/:_id', {
 	},
 	controller: 'adminController',
 	action: 'editGallery',
-	data: function (){
+	data: function() {
 		_id = this.params._id;
 		templateData = {
 			_id: _id,
 			action: 'edit',
-			gallery: Galleries.findOne({_id: _id}),
+			gallery: Galleries.findOne({
+				_id: _id
+			}),
 		};
 		return templateData;
 	}
 });
-Router.route('admin/view-gallery/:_id',{
+Router.route('admin/view-gallery/:_id', {
 	after: function() {
 		document.title = 'gallery | Pictures of Lily'
 	},
 	controller: 'adminController',
 	action: 'viewGallery',
-	data: function (){
+	data: function() {
 		_id = this.params._id;
 		templateData = {
 			_id: _id,
@@ -181,7 +184,7 @@ Router.route('admin/new-image/:id', {
 	controller: 'adminController',
 	action: 'newImage',
 });
-Router.route('admin/image/:id',{
+Router.route('admin/image/:id', {
 	after: function() {
 		document.title = 'image | Pictures of Lily'
 	},

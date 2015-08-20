@@ -5,7 +5,9 @@ Images = new FS.Collection("images", {
 GalleryImages = new Mongo.Collection("gallery_images");
 
 if(Meteor.isClient) {
-
+	Meteor.subscribe("gallery_images");
+	Meteor.subscribe("galleries");
+	Meteor.subscribe("images");
 	/*------------*/
 	/* WEDDINGS JS */
 	/*------------*/
@@ -19,6 +21,17 @@ if(Meteor.isClient) {
 			return Galleries.find({type: "wedding"}, {sort: {createdAt: -1}});
 		}
 	});
+	Template.wedding_galleries.helpers({
+		Galleries: function () {
+			return Galleries.find({type: "wedding"}, {sort: {createdAt: -1}});
+		},
+	});
+	Template.wedding_galleries.events({
+		"click .img" : function() {
+			Router.go('/view-gallery/' + this._id);
+		}
+	});
+
 
 	/*-------------*/
 	/* POTRAITS JS */
@@ -34,6 +47,11 @@ if(Meteor.isClient) {
 		Galleries: function () {
 			return Galleries.find({type: "portrait"}, {sort: {createdAt: -1}});
 		}
+	});
+	Template.portrait_galleries.helpers({
+		Galleries: function () {
+			return Galleries.find({type: "portrait"}, {sort: {createdAt: -1}});
+		},
 	});
 
 	/*------------*/
@@ -81,6 +99,12 @@ if(Meteor.isClient) {
 		}
 	});
 
+	Template.gallery.helpers({
+		getImage : function() {	
+			return GalleryImages.find({gallery_id : this._id}).fetch()[0].image;
+		}
+	});
+
 
 	/*-----------*/
 	/* IMAGES JS */
@@ -115,6 +139,10 @@ if(Meteor.isClient) {
 					createdAt: new Date(),
 				});
 			}
+			var current_image_count = Galleries.findOne({_id : gallery_id}).image_count;
+			Galleries.update(gallery_id, {
+				$set: {image_count: current_image_count+files.length}
+			});
 			Router.go("/admin/view-gallery/"+gallery_id)
 		}
 
@@ -130,8 +158,31 @@ if(Meteor.isClient) {
 		"click td.delete": function () {
 			Images.remove(this.image._id);
 			GalleryImages.remove(this._id);
+			var parts = location.href.split('/');
+			var gallery_id = parts.pop();
+			var current_image_count = Galleries.findOne({_id : gallery_id}).image_count;
+			Galleries.update(gallery_id, {
+				$set: {image_count: current_image_count-1}
+			});
 		},
 	});
 
+	/*----------------*
+	/*GALLERY FULL JS */
+	/*----------------*/
+	Template.gallery_full.helpers({
+		images : function() {
 
+			return GalleryImages.find({gallery_id: Session.get('gallery_id')},{sort: {createdAt: -1}});
+		},
+		gallery : function () {
+			return Galleries.findOne({_id: Session.get('gallery_id')});
+		}
+	});
+	Template.gallery_full.rendered = function () {
+		var parts = location.href.split('/');
+		var gallery_id = parts.pop();
+
+		Session.set('gallery_id',gallery_id);
+	};
 }

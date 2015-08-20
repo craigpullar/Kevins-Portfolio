@@ -9,7 +9,7 @@ if (Meteor.isClient) {
 			this.render('weddings', {to: 'content'});
 		},
 		portraits: function() {
-			this.render('portraits', {to: 'content'});
+			this.render('portrait_galleries', {to: 'content'});
 		},
 		galleries: function() {
 			this.render('galleries', {to: 'content'});
@@ -19,7 +19,10 @@ if (Meteor.isClient) {
 		},
 		blog: function() {
 			this.render('blog', {to: 'content'});
-		}
+		},
+		viewGallery : function() {
+			this.render('gallery_full', {to : 'content'});
+		},
 	});
 
 }

@@ -21,15 +21,8 @@
 </template>
 <template name="wedding_galleries">
 	<div id="weddings-container">
-		<div class="grid-sizer"></div>
-		<div class="result-item">
-			<img src="weddings/1.jpg" />
-		</div>
-		<div class="result-item">
-			<img src="weddings/2.jpg" />
-		</div>
-		<div class="result-item">
-			<img src="weddings/3.jpg" />
-		</div>
+		{{#each Galleries}}
+		{{> gallery}}
+		{{/each}}
 	</div>
 </template>

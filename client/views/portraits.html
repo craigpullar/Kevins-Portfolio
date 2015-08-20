@@ -1,33 +1,8 @@
-<template name="portraits">
+<template name="portrait_galleries">
 	<h1 class="mobile">Portraits</h1>
-	<div id="portraits-container">
-		<div class="grid-sizer"></div>
-		<div class="result-item">
-			<img src="portraits/1.jpg" />
-		</div>
-		<div class="result-item">
-			<img src="portraits/2.jpg" />
-		</div>
-		<div class="result-item">
-			<img src="portraits/3.jpg" />
-		</div>
-		<div class="result-item">
-			<img src="portraits/4.jpg" />
-		</div>
-		<div class="result-item">
-			<img src="portraits/5.jpg" />
-		</div>
-		<div class="result-item">
-			<img src="portraits/6.jpg" />
-		</div>
-		<div class="result-item">
-			<img src="portraits/7.jpg" />
-		</div>
-		<div class="result-item">
-			<img src="portraits/8.jpg" />
-		</div>
-		<div class="result-item">
-			<img src="portraits/9.jpg" />
-		</div>
+	<div id="portait-container">
+		{{#each Galleries}}
+		{{> gallery}}
+		{{/each}}
 	</div>
 </template>

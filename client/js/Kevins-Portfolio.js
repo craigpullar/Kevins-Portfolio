@@ -34,13 +34,13 @@ if (Meteor.isClient) {
 
 	Template.weddings.events({
 		'click a#galleries' : function(event){
-			$('#pricing-content').fadeOut();
+			$('#pricing-content').hide();
 			$("#weddings-container").fadeIn();
 			$('a#galleries').addClass('active');
 			$('a#pricing').removeClass('active');
 		},
 		'click a#pricing' : function(event){
-			$("#weddings-container").fadeOut();
+			$("#weddings-container").hide();
 			$('#pricing-content').fadeIn();
 			$('a#pricing').addClass('active');
 			$('a#galleries').removeClass('active');

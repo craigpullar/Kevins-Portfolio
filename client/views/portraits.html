@@ -1,8 +1,43 @@
 <template name="portrait_galleries">
 	<h1 class="mobile">Portraits</h1>
-	<div id="portait-container">
+	<div id="portrait-container">
 		{{#each Galleries}}
 		{{> gallery}}
 		{{/each}}
 	</div>
+</template>
+<template name="portrait_nav">
+	<div id="portrait-nav">
+		<a id="galleries" class="active ghost-button" >Galleries</a>
+		<a id="pricing" class="ghost-button">Pricing &amp; Info</a>
+	</div>
+</template>
+<template name='portrait_pricing'>
+	<div id="pricing-content" class="card content">
+		<h1>Portrait Pricing</h1>
+		<p>
+			Basic Portrait Package £150
+		</p>
+		<p>
+			Cherish those important milestones for years to come with a Personal Portrait session, at your home or a preferred location.
+		</p>
+		<p>
+			Portrait Subjects including:
+		</p>
+		<ul>
+			<li>Maternity</li>
+			<li>Babies</li>
+			<li>Children</li>
+			<li>Family</li>
+			<li>Couples</li>
+			<li>Pets</li>
+		</ul>
+		<p>10 prints (8x10), with 20 further Digital images on a Hard Disk</p>
+	</div>
+</template>
+<template name='portraits'>
+	<h1 class="mobile">Weddings</h1>
+	{{ > portrait_nav}}
+	{{ > portrait_pricing}}
+	{{ > portrait_galleries}}
 </template>

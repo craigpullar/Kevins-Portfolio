@@ -23,7 +23,7 @@ if(Meteor.isClient) {
 	});
 	Template.wedding_galleries.helpers({
 		Galleries: function () {
-			return Galleries.find({type: "wedding"}, {sort: {createdAt: -1}});
+			return Galleries.find({type: "wedding",image_count: {$gt: 0}}, {sort: {createdAt: -1}});
 		},
 	});
 	Template.wedding_galleries.events({
@@ -50,7 +50,7 @@ if(Meteor.isClient) {
 	});
 	Template.portrait_galleries.helpers({
 		Galleries: function () {
-			return Galleries.find({type: "portrait"}, {sort: {createdAt: -1}});
+			return Galleries.find({type: "portrait",image_count: {$gt: 0}}, {sort: {createdAt: -1}});
 		},
 	});
 

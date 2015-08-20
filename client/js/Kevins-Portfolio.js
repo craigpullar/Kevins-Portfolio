@@ -46,6 +46,20 @@ if (Meteor.isClient) {
 			$('a#galleries').removeClass('active');
 		}
 	});
+	Template.portraits.events({
+		'click a#galleries' : function(event){
+			$('#pricing-content').hide();
+			$("#portrait-container").fadeIn();
+			$('a#galleries').addClass('active');
+			$('a#pricing').removeClass('active');
+		},
+		'click a#pricing' : function(event){
+			$("#portrait-container").hide();
+			$('#pricing-content').fadeIn();
+			$('a#pricing').addClass('active');
+			$('a#galleries').removeClass('active');
+		}
+	});
 
 	Template.registerHelper('formatDate', function(date) {
 		return moment(date).format('dddd, MMMM Do YYYY, h:mm:ss a');

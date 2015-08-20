@@ -9,7 +9,7 @@ if (Meteor.isClient) {
 			this.render('weddings', {to: 'content'});
 		},
 		portraits: function() {
-			this.render('portrait_galleries', {to: 'content'});
+			this.render('portraits', {to: 'content'});
 		},
 		galleries: function() {
 			this.render('galleries', {to: 'content'});

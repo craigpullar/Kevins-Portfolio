@@ -53,6 +53,11 @@ if(Meteor.isClient) {
 			return Galleries.find({type: "portrait",image_count: {$gt: 0}}, {sort: {createdAt: -1}});
 		},
 	});
+	Template.portrait_galleries.events({
+		"click .img" : function() {
+			Router.go('/view-gallery/' + this._id);
+		}
+	});
 
 	/*------------*/
 	/* GALLERY JS */

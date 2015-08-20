@@ -1,6 +1,7 @@
 <template name="gallery">
 	<div class="result-item" >
 		<div class='img card' style="background-image:url({{getImage.url store='images' uploading='/images/uploading.gif' storing='/images/storing.gif'}}">
+			<div class="fill"></div>
 			<h1>{{title}}</h1>
 			<img src="{{getImage.url store='images' uploading='/images/uploading.gif' storing='/images/storing.gif'}}" style="visibility:hidden"/>
 		</div>
@@ -17,6 +18,7 @@
 </template>
 <template name="image">
 	<div class="masonry-item">
+
 		<img class='card' src="{{image.url store='images' uploading='/images/uploading.gif' storing='/images/storing.gif'}}"/>
 	</div>
 </template>

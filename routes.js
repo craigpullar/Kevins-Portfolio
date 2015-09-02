@@ -32,7 +32,13 @@ Router.route('/weddings', {
 		document.title = 'Weddings | Pictures of Lily'
 	},
 	controller: 'appController',
-	action: 'weddings'
+	action: 'weddings',
+	data: function() {
+		templateData = {
+			Galleries : Galleries.find({type: "wedding",image_count: {$gt: 0}}, {sort: {createdAt: -1}}),
+		};
+		return templateData;
+	}
 });
 
 Router.route('/contact', {
@@ -47,7 +53,18 @@ Router.route('/view-gallery/:id', {
 		document.title = 'Gallery | Pictures of Lily'
 	},
 	controller: 'appController',
-	action: 'viewGallery'
+	action: 'viewGallery',
+	data: function() {
+		_id = this.params.id;
+		templateData = {
+			_id: _id,
+			gallery: Galleries.findOne({
+				_id: _id
+			}),
+			images : GalleryImages.find({gallery_id: _id},{sort: {createdAt: -1}}),
+		};
+		return templateData;
+	}
 });
 /*--------------------*/
 /* END OF SITE ROUTES */
@@ -172,7 +189,7 @@ Router.route('admin/view-gallery/:_id', {
 	data: function() {
 		_id = this.params._id;
 		templateData = {
-			_id: _id,
+			_id: _id
 		};
 		return templateData;
 	}

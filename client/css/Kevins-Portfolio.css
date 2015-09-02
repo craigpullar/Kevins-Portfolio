@@ -5,12 +5,15 @@
   font-family: AlexBrush;
   src: url(AlexBrush-Regular.ttf);
 }
-html {
-  background:url('bg.jpg');
-  background-size:stretch;
+div#back {
+  background: url('/bg.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
   background-position: center;
   color: #333;
-
+  position:fixed;
+  height:100%;
+  width:100%;
 }
 ul,ol,li {
   font-family:'Open Sans';
@@ -149,16 +152,21 @@ a.ghost-button:hover, a.ghost-button.active {
   background:#333;
   color:#fff;
 }
-#contact img {
- width: 150px;
- -moz-transform: scaleX(-1);
- -o-transform: scaleX(-1);
- -webkit-transform: scaleX(-1);
- transform: scaleX(-1);
- filter: FlipH;
- -ms-filter: "FlipH";
+#contact img#kevin {
+  width: 232px;
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: FlipH;
+  -ms-filter: "FlipH";
 }
-
+.social img {
+  width:50px!important;
+}
+.social {
+  display:inline-block;
+}
 footer #details {
  padding: 5px;
  float: right;
@@ -187,19 +195,42 @@ i#mobile-menu-icon:hover {
  cursor: pointer;
 }
 
-
+div.back-fill {
+  background: rgba(0,0,0,0.7);
+  position: fixed;
+  width: 100%;
+  left: 0px;
+  top: 0px;
+  z-index: 999;
+  height:100%;
+  display: none;
+}
+.fullscreen_image img {
+  width:100%;
+}
+.fullscreen_image  {
+  z-index:9999;
+  width:60%!important;
+  height:auto;
+  position: absolute;
+  top:-70px;
+  left:20%;
+  margin-bottom:25px;
+}
 .result-item {
  width: 33%;
  box-sizing: border-box;
  padding: 1%;
  float: left;
+ height:200px;
 }
-.grid-sizer,
 .masonry-item {
  width: 33%;
  box-sizing: border-box;
- padding: 1%;
  float:left;
+ padding: 1%;
+ height:200px;
+ overflow: hidden;
 }
 .masonry-item img {
   width:100%;
@@ -213,10 +244,10 @@ i#mobile-menu-icon:hover {
 }
 
 .result-item .img {
-  background-size: cover;
-  box-sizing: border-box;
   position:relative;
-  background-position: center;
+  background:rgba(0,0,0,0.7);
+  width:100%;
+  height:100%;
 }
 .result-item .img:hover {
   cursor:pointer;
@@ -225,7 +256,7 @@ i#mobile-menu-icon:hover {
 .result-item .img h1 {
   color:#fff;
   position:absolute;
-  bottom:0px;
+  bottom:55px;
   width:100%;
   text-align: center;
 }

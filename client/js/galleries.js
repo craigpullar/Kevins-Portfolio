@@ -1,3 +1,5 @@
+
+
 Galleries = new Mongo.Collection("galleries");
 Images = new FS.Collection("images", {
 	stores: [new FS.Store.FileSystem("images",{path: './public/uploads'})]
@@ -106,7 +108,8 @@ if(Meteor.isClient) {
 
 	Template.gallery.helpers({
 		getImage : function() {	
-			return GalleryImages.find({gallery_id : this._id}).fetch()[0].image;
+			var image = GalleryImages.find({gallery_id : this._id}).fetch()[0].image;
+			return image;
 		}
 	});
 
@@ -175,19 +178,24 @@ if(Meteor.isClient) {
 	/*----------------*
 	/*GALLERY FULL JS */
 	/*----------------*/
-	Template.gallery_full.helpers({
-		images : function() {
-
-			return GalleryImages.find({gallery_id: Session.get('gallery_id')},{sort: {createdAt: -1}});
-		},
-		gallery : function () {
-			return Galleries.findOne({_id: Session.get('gallery_id')});
+	Template.gallery_full.events({
+		"click div.back-fill" : function () {
+			$("div.fullscreen_image").fadeOut();
+			$("div.back-fill").fadeOut();
+			$("#gallery-title").css("position","relative");
+			$(".gallery-container").css("position","relative");
 		}
 	});
-	Template.gallery_full.rendered = function () {
-		var parts = location.href.split('/');
-		var gallery_id = parts.pop();
+	Template.image.events({
+		"click img" : function(event) {
+			// console.log($(evt.target).html());
+			$("#gallery-title").css("position","fixed");
+			$(".gallery-container").css("position","fixed");
+			$("div.fullscreen_image").fadeIn();
+			$("div.fullscreen_image").html($(event.target).clone());
+			$("div.back-fill").fadeIn();
+		}
+	});
 
-		Session.set('gallery_id',gallery_id);
-	};
+
 }

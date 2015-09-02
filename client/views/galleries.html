@@ -1,24 +1,22 @@
 <template name="gallery">
 	<div class="result-item" >
-		<div class='img card' style="background-image:url({{getImage.url store='images' uploading='/images/uploading.gif' storing='/images/storing.gif'}}">
-			<div class="fill"></div>
+		<div class='img card'>
 			<h1>{{title}}</h1>
-			<img src="{{getImage.url store='images' uploading='/images/uploading.gif' storing='/images/storing.gif'}}" style="visibility:hidden"/>
 		</div>
 	</div>
 </template>
 <template name="gallery_full">
+	<div class="back-fill"></div>
+	<div class="fullscreen_image"></div>
+	<h1 id="gallery-title">{{gallery.title}}</h1>
 	<div class="gallery-container">
-		<h1>{{gallery.title}}</h1>
 		{{#each images}}
 		{{> image}}
 		{{/each}}
 	</div>
-
 </template>
 <template name="image">
 	<div class="masonry-item">
-
-		<img class='card' src="{{image.url store='images' uploading='/images/uploading.gif' storing='/images/storing.gif'}}"/>
+		<img class="card" src="{{image.url store='images' uploading='/images/uploading.gif' storing='/images/storing.gif'}}"/>
 	</div>
 </template>

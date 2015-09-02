@@ -1,5 +1,8 @@
 if (Meteor.isClient) {
 
+	Template.AppLayout.rendered = function () {
+		$('html').height($(document).height());
+	};
 	Template.AppLayout.events({
 
 

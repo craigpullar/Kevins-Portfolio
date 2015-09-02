@@ -1,0 +1,3 @@
+UPDATE PACKAGE 1
+
+These updates will be included in V 1.1 of the app.

@@ -1,3 +1,11 @@
 UPDATE PACKAGE 1
 
 These updates will be included in V 1.1 of the app.
+
+Updates to be made:
+- Slideshow on welcome page
+- Portrait capabilities on gallery page
+- Change location of files to prevent destruction on server restart
+- Next and previous buttons on slide show
+
+Estimated delivery date: Sunday 30th September

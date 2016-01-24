@@ -2,14 +2,21 @@
 
 <template name="landscape_galleries">
 	<div id="landscape-container">
-		{{#each Galleries}}
-		{{> gallery}}
-		{{/each}}
+		{{ > photoswipe }}
+		<div class="gallery-container">
+			<div class="grid-sizer"></div>
+			{{#each images}}
+			<div class="masonry-item">
+				<div class="clicker cover"></div>
+				<img class="card gallery" id='{{_id}}' src="/kevin.jpg" data-index="{{@index}}" data-src="{{image.url store='images' uploading='/images/uploading.gif' storing='/images/storing.gif'}}"/>
+			</div>
+			{{/each}}
+		</div>
 	</div>
 </template>
 <template name="landscape_nav">
 	<div id="landscape-nav">
-		<a id="galleries" class="active ghost-button" >Galleries</a>
+		<a id="galleries" class="active ghost-button" >Gallery</a>
 		<a id="pricing" class="ghost-button">Pricing &amp; Info</a>
 	</div>
 </template>

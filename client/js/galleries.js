@@ -40,9 +40,38 @@ if(Meteor.isClient) {
 	/* -------------------- */
 
 	Template.landscape_galleries.helpers({
-		Galleries: function () {
-			return Galleries.find({type: "landscape", private : false, image_count: {$gt: 0}}, {sort: {createdAt: -1}});
+		images: function () {
+			var gallery = Galleries.findOne({type: "landscape", private : false, image_count: {$gt: 0}}, {sort: {createdAt: -1}});
+			return GalleryImages.find({gallery_id: gallery._id},{sort: {createdAt: -1}});
+		}
+	});
+	Template.landscape_galleries.rendered = function () {
+		//IF PRIVATE && SESSION VAIRABLE NOT SET TAKE THEM TO GALLERY LOGIN
+		$('.gallery-container').imagesLoaded().progress( function(){
+			$('.gallery-container').masonry({
+				columnWidth: '.grid-sizer',
+				itemSelector: '.masonry-item',
+				percentPosition: true
+			});
+		});
+		$("img.gallery").unveil(50, function() {
+			$('.gallery-container').imagesLoaded().progress( function(){
+				$('.gallery-container').masonry({
+					columnWidth: '.grid-sizer',
+					itemSelector: '.masonry-item',
+					percentPosition: true
+				});
+			});
+		});
+	};
+	Template.landscape_galleries.events({
+		"click img" : function(event) {
+			initSlideshow($(event.target).parent().index()-1);
 		},
+		"click .clicker" : function(event) {
+			$(event.target).next('img').click();
+		}
+
 	});
 
 
@@ -80,7 +109,7 @@ if(Meteor.isClient) {
 	Template.portrait_galleries.helpers({
 		Galleries: function () {
 			return Galleries.find({type: "portrait", private : false, image_count: {$gt: 0}}, {sort: {createdAt: -1}});
-		},
+		}
 	});
 	Template.portrait_galleries.events({
 		"click .img" : function() {

@@ -3,6 +3,23 @@
 	<table class="blog">
 		<th>Gallery Title</th>
 		<th>Date</th>
+		<th>Private</th>
+		<th>Password</th>
+		<th>Image Count</th>
+		<th>Edit Action</th>
+		<th>Delete Action</th>
+		{{#each Galleries}}
+		{{> admin_gallery_row}}
+		{{/each}}
+	</table>
+</template>
+<template name="admin_landscape">
+	<a id="add_gallery_button" class="ghost-button">+ Add Gallery</a>
+	<table class="blog">
+		<th>Gallery Title</th>
+		<th>Date</th>
+		<th>Private</th>
+		<th>Password</th>
 		<th>Image Count</th>
 		<th>Edit Action</th>
 		<th>Delete Action</th>
@@ -16,6 +33,8 @@
 	<table class="blog">
 		<th>Gallery Title</th>
 		<th>Date</th>
+		<th>Private</th>
+		<th>Password</th>
 		<th>Image Count</th>
 		<th>Edit Action</th>
 		<th>Delete Action</th>
@@ -27,32 +46,41 @@
 <template name="admin_gallery_row">
 	<tr>
 		<td><a class="goToGallery" href='' id="{{_id}}">{{title}}</a></td>
-		<td>{{formatDate date}}</td>
+		<td>{{formatDate createdAt}}</td>
+		{{#if private}}
+		<td>private</td>
+		<td>{{password}}</td>
+		{{else}}
+		<td>public</td>
+		<td> Not set </td>
+		{{/if}}
 		<td>{{image_count}}</td>
 		<td class="edit">edit</td>
 		<td class="delete">delete</td>
 	</tr>
 </template>
 <template name='admin_gallery'>
-	{{#unless imagesForGallery}}
-	<p>error retrieving data</p>
-	{{else}}
 	<a id="add_image_button" href="/admin/new-image/{{ gallery }}" class="ghost-button">+ Add Image</a>
 	<table class='blog'>
 		<th>Image</th>
 		<th>Date</th>
 		<th>Delete Action</th>
+		<th>Uploaded</th>
 		{{#each imagesForGallery}}
 		{{> admin_image_row}}
 		{{/each}}
 	</table>
-	{{/unless}}
 </template>
 <template name="admin_image_row">
 	<tr>
 		<td><a href='/admin/image/{{image._id}}' target="_blank">{{ image._id }}</a></td>
-		<td>{{formatDate uploadedAt}}</td>
+		<td>{{formatDate createdAt}}</td>
 		<td class="delete">delete</td>
+		{{#if isUploaded }}
+		<td>Uploaded</td>
+		{{else}}
+		<td>Uploading</td>
+		{{/if}}
 	</tr>
 </template>
 <template name='view_image'>

@@ -1,6 +1,17 @@
 <template name="welcome">
-	<img id="landscape-image" class="card" src="4.jpg" />
-	<img id="portait-image" class="card" src="sophie.jpg" />
+	<div id="portrait-slides" class="card">
+		{{#each portraitImages}}
+		<img src="{{this.url store='PortraitSlideshow' uploading='/images/uploading.gif' storing='/images/storing.gif'}}" alt=""/>
+		{{/each}}
+
+	</div>
+	<div id="landscape-slides" class="card">
+		{{#each landscapeImages}}
+		<img src="{{this.url store='LandscapeSlideshow' uploading='/images/uploading.gif' storing='/images/storing.gif'}}" alt=""/>
+		{{/each}}
+	</div>
+
+	
 	<div id="content" class="card content">
 		<h1>Welcome</h1>
 		<p>Welcome to Pictures of Lily, home of Scottish wedding Photographer Kevin Porter. Based in the scenic rural Village of Alva in Central Scotland, Kevin provides a first class service to Clients situated anywhere in the Country...</p>

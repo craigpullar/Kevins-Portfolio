@@ -1,0 +1,40 @@
+<template name="admin_slideshow">
+	<a id="landscape" href="/admin/new-image/slideshow" class="active ghost-button">Landscape images</a>
+	<a id="portrait" href="/admin/new-image/slideshow" class="ghost-button">Portrait images</a>
+	<br><br><br>
+	<a id="add_image_button" href="/admin/new-image/slideshow" class="ghost-button">+ Add Image</a>
+	<table class='blog'>
+		<th>Image</th>
+		<th>Date</th>
+		<th>Delete Action</th>
+		<th>Uploaded</th>
+		{{#each images}}
+		{{> admin_slideshow_row}}
+		{{/each}}
+	</table>
+</template>
+<template name="admin_slideshow_row">
+	{{#if isImage store=getCurrentStore}}
+	<tr>
+		<td><a href='/admin/slideshow-image/{{_id}}' target="_blank">{{ _id }}</a></td>
+		<td>{{formatDate uploadedAt}}</td>
+		<td class="delete">delete</td>
+		{{#if isUploaded }}
+		<td>Uploaded</td>
+		{{else}}
+		<td>Uploading</td>
+		{{/if}}
+	</tr>
+	{{/if}}
+</template>
+<template name="view_slideshow_image">
+	{{#if getImage}}
+	{{#if isLandscapeImage}}
+	<img src="{{getImage.url store='LandscapeSlideshow' uploading='/images/uploading.gif' storing='/images/storing.gif'}}" alt=""/>
+	{{else}}
+	<img src="{{getImage.url store='PortraitSlideshow' uploading='/images/uploading.gif' storing='/images/storing.gif'}}" alt=""/>
+	{{/if}}
+	{{else}}
+	<p>There was an error getting your image. Try reloading. If that doesn't work ask Craig.</p>
+	{{/if}}
+</template>

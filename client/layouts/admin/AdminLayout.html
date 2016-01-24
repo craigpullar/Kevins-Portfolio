@@ -1,17 +1,26 @@
 <template name="AdminLayout">
 	<head>
-		<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-		rel="stylesheet">
-	</head>
+	<!-- 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet"> -->
+</head>
 
-	<body>
-		<i id="mobile-menu-icon" class="material-icons">menu</i>
-		{{ > admin_nav}}
-		<div id="wrapper">
+<body id="admin">
+	<div id="back"></div>
+	<div id="backdrop"></div>
+	<div id="confirm">
+		<h1>Sure?</h1>
+		<p>Are you sure you want to delete this item?</p>
+		<a id="cancel" href="" >Cancel</a>
+		<a id="delete" href="">Delete</a>
+	</div>
+	<i id="mobile-menu-icon" class="material-icons">menu</i>
+	{{ > admin_nav}}
+	{{ > adminMobileNav}}
+	<div id="wrapper">
 
 
 
-			{{ > yield "content"}}
-		</div>
-	</body>
+		{{ > yield "content"}}
+	</div>
+</body>
 </template>

@@ -1,13 +1,37 @@
 <template name="AppLayout">
 	<head>
+		<meta name="fragment" content="!">
+		<meta charset="UTF-8">
 		<title>Kevins Portfolio</title>
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 		rel="stylesheet">
+
+		
+		
+		<description>Welcome to Pictures of Lily, home of Scottish wedding Photographer Kevin Porter.</description>
+		<meta name="description" content="Welcome to Pictures of Lily, home of Scottish wedding Photographer Kevin Porter.">
+		<meta name="author" content="Kevin Porter">
+		<meta property="og:title" content="Pictures of Lily Photography">
+		<meta property="og:image" content="/kevin.jpg">
+		<meta property="og:description" content="Welcome to Pictures of Lily, home of Scottish wedding Photographer Kevin Porter.">
+		<meta name="google-site-verification" content="AQU1VEZ9BNkNvQtgaJUua1b5QXXW4Qunw7fB6owl2WY" />
+
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-71744248-1', 'auto');
+			ga('send', 'pageview');
+
+		</script>
 	</head>
 	<div id="back"></div>
 	<body>
 		<i id="mobile-menu-icon" class="material-icons">menu</i>
 		{{ > nav}}
+		{{ > mobileNav }}
 		<div id="wrapper">
 
 

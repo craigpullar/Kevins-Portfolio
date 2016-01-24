@@ -1,23 +1,54 @@
 <template name='new_image'>
-	<form class='card new-image' id='new-image'>
+	<a id="back_gallery_button" class="ghost-button">Back to gallery</a>
+	<form class='new-image new-post' id='new-image'>
 		<h1>Add your images</h1>
-		<input type="file" name="files" multiple />
-		<input type='submit' value='upload' />
-
+		{{#if slideshow}}
+		{{#if isLandscapeUpload}}
+		<p>Remeber images being uploaded for the landscape slideshow should have a dimension of <b>1500*800</b></p> 
+		{{/if}}
+		{{#if isPortraitUpload}}
+		<p>Remeber images being uploaded for the portrait slideshow should have a dimension of <b>700*850</b></p> 
+		{{/if}}
+		{{/if}}
+		<div class="fileUpload btn btn-primary">
+			<input type="file" class="upload" name="files" multiple />
+			<span>Upload</span>
+		</div>
 	</form>
 </template>
 <template name="new_gallery">
-	<form class='card new-post' id='{{action}}'>
-		<h1>Name your gallery</h1>
-		<input type="text" name="title" placeholder="A good sunday afternoon" value='{{gallery.title}}'/>
-		<input type='submit' value='{{action}}' />
+	<a id="back_gallery_button" class="ghost-button">Back to galleries</a>
+	<form class='new-post' id='{{action}}'>
+		<h1>Create your gallery</h1>
+		
+		{{#if gallery.private}}
+		<div class="container">
+			<input type="checkbox" id="squared" class="private_checkbox" name="priv"  checked  />
+			<label for="squared"></label>
+		</div>
+		
+		<input type="text" class="" name="password" id="private_pass" placeholder="Gallery pass code" value="{{gallery.password}}"/>
+		{{else}}
+		<div class="container">
+			<input type="checkbox" id="squared" class="private_checkbox" name="priv" /><label for="squared"></label>
+		</div>
+		<input type="text"  name="password" id="private_pass" placeholder="Gallery pass code" disabled />
+		{{/if}}
+		<div id="message" style="width:80%;text-align:center;"><p>You must enter a gallery name</p></div>
+		<input type="date" name="createdAt" class="createdAt" value="{{getFormattedDate gallery.createdAt}}"/>
+		<input type="text" name="title" placeholder="Gallery name" value='{{gallery.title}}'/>
+		<input type='submit' data-action="{{action}}" value='{{action_name}}' />
 	</form>
 </template>
+
 <template name="newPost">
-	<form class='card new-post' id='{{action}}'>
-		<h1>Add your images</h1>
-		<input type="text" name="title" placeholder="A good sunday afternoon" value='{{post.title}}'/>
-		<textarea name="content" placeholder='It was a sunday afternoon..'>{{post.content}}</textarea>
+	<a id="back_post_button" class="ghost-button">Back to posts</a>
+	<form class='new-post' id='{{action}}' onsubmit='editor.post();'>
+		<h1>Create a new post</h1>
+
+		<input type="text" name="title" placeholder="Post title" value='{{post.title}}'/>
+		<input type="date" name="createdAt" class="createdAt" value="{{getFormattedDate post.createdAt}}"/>
+		<textarea id="post-content" name="content" placeholder='It was a sunday afternoon..'>{{post.content}}</textarea>
 
 		<input type='submit' value='{{action}}' />
 

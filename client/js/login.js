@@ -1,4 +1,6 @@
 if(Meteor.isClient) {
+
+	/* LOGIN EVENTS */
 	Template.LoginLayout.events({
 		"click button.submit" : function(event) {
 			checkLogin();
@@ -15,6 +17,8 @@ if(Meteor.isClient) {
 
 
 	});
+
+	/* CHECK LOGIN FUNCTION */
 	var checkLogin = function() {
 		passcode = "kevbob123";
 		user_passcode = $('form.login input').val();

@@ -8,8 +8,14 @@ if (Meteor.isClient) {
 		weddings: function() {
 			this.render('weddings', {to: 'content'});
 		},
+		customer: function() {
+			this.render('customer_gallery', {to: 'content'});
+		},
 		portraits: function() {
 			this.render('portraits', {to: 'content'});
+		},
+		landscape: function() {
+			this.render('landscape', {to: 'content'});
 		},
 		galleries: function() {
 			this.render('galleries', {to: 'content'});
@@ -23,6 +29,9 @@ if (Meteor.isClient) {
 		viewGallery : function() {
 			this.render('gallery_full', {to : 'content'});
 		},
+		galleryLogin : function() {
+			this.render('galleryLogin', {to : 'content'});
+		}
 	});
 
 }

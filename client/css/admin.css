@@ -1,3 +1,12 @@
+body#admin #back{
+	background:#559e83;
+	background-repeat: repeat;
+	height:100%;
+}
+
+#back_gallery_button,#back_post_button {
+	margin-bottom:20px;
+}
 .new-post input {
 	position: relative;
 	width: 80%;
@@ -15,9 +24,12 @@
 }
 .new-post {
 	padding:20px;
+	border:1px solid #A4A1A1;
+	background:#fff;
 }
 .new-post h1 {
 	margin-left:10%;
+	margin-bottom:40px;
 }
 .new-post button {
 	margin: 0px auto;
@@ -29,12 +41,15 @@ table.blog {
 	/* border: 1px solid #333; */
 	width: 100%;
 	margin-top: 40px;
+	
+
 }
 
 .blog td {
 	border: 1px solid #333;;
 	text-align: center;
 	font-family: 'Open sans';
+	background: #fff;
 }
 
 .blog th {
@@ -52,4 +67,185 @@ td.edit:hover {
 	cursor: pointer;
 	background: #e67e22;
 	color: #fff;
+}
+.private_checkbox {
+	display:inline!important;
+	width:auto!important;
+	margin:10px 5px 10px 60px!important;
+}
+label {
+	display:inline;
+}
+#private_pass {
+	display:inline;
+	width:50%!important;
+	margin:0px 0px 0px 20px;
+}
+form#galleryLogin {
+	margin-top: 100px;
+}
+
+/* Squared  checkbox*/
+.container   {
+	width: 6rem;
+	height: 2.5rem;
+	position: relative;
+	float:left;
+	margin-left:10%;
+}
+
+
+.container >  input {
+	opacity: 0;
+}
+form .container > label {
+	position: absolute;
+	background-color: #e9513a;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	-webkit-transition: background-color .2s ease-in-out;
+	transition: background-color .2s ease-in-out;
+}
+form .container > label:before {
+	content: "";
+	display: block;
+	width: 2.5rem;
+	height: 1.5rem;
+	cursor: pointer;
+	position: absolute;
+	top: .5rem;
+	z-index: 1;
+	left: .5rem;
+	background: #FFF;
+	-webkit-transition: left .2s ease-in-out;
+	transition: left .2s ease-in-out;
+}
+form .container >>  label:after {
+	color: #ccc;
+	content:'|||';
+	letter-spacing: .0625rem;
+	position: absolute;
+	left: 1.1rem;
+	top: .75rem;
+	z-index: 1;
+	-webkit-transition: left .2s ease-in-out;
+	transition: left .2s ease-in-out;
+}
+form .container > input[type=checkbox]:checked ~ label {
+	background-color: #4fbe79;
+}
+form .container > input[type=checkbox]:checked ~ label:before {
+	left: 3rem;
+}
+form .container > input[type=checkbox]:checked ~ label:after {
+	left: 3.6rem;
+}
+
+/* IMAGE UPLOADING */
+.fileUpload {
+	position: relative;
+	overflow: hidden;
+	margin: 10px;
+}
+.fileUpload input.upload {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	cursor: pointer;
+	opacity: 0;
+	width:100%;
+	height:100%;
+	z-index:99;
+	filter: alpha(opacity=0);
+}
+.fileUpload span {
+	margin-left: 10%;
+	border: 1px solid #333;
+	padding: 20px;
+	font-family: 'Open Sans';
+	font-weight: lighter;
+	/* cursor: pointer; */
+	display: block;
+	width: 80%;
+	box-sizing: border-box;
+	text-align: center;
+}
+.fileUpload input.upload:hover +  span{
+	background:#333;
+	color:#fff;
+}
+
+/* ### WIZYWIG EDITOR ### */
+body#editor {margin:0; margin:25px; margin-left:10%; font:12px 'Open Sans';}
+#editor h1 {font:30px 'Trebuchet MS',Verdana; margin:0}
+#editor h2 {font-size:12px; font-weight:normal; font-style:italic}
+#editor p {margin:0 0 14px}
+
+#tinyeditor {border:none; margin:0; padding:0; font:14px 'Open Sans'; width:80%!important;}
+.tinyeditor {border:1px solid #bbb; padding:0 1px 1px; font:12px 'Open Sans';  margin-left:10%!important; width:80%!important;}
+.tinyeditor iframe {border:none; overflow-x:hidden;  width:80%;}
+.tinyeditor-header {height:31px; border-bottom:1px solid #bbb; background:url(/header-bg.gif) repeat-x; padding-top:1px}
+.tinyeditor-header select {float:left; margin-top:5px}
+.tinyeditor-font {margin-left:12px}
+.tinyeditor-size {margin:0 3px}
+.tinyeditor-style {margin-right:12px}
+.tinyeditor-divider {float:left; width:1px; height:30px; background:#ccc}
+.tinyeditor-control {float:left; width:34px; height:30px; cursor:pointer; background-image:url(/icons.png)}
+.tinyeditor-control:hover {background-color:#fff; background-position:30px 0}
+.tinyeditor-footer {height:32px; border-top:1px solid #bbb; background:#f5f5f5}
+.toggle {float:left; background:url(/icons.png) -34px 2px no-repeat; padding:9px 13px 0 31px; height:23px; border-right:1px solid #ccc; cursor:pointer; color:#666}
+.toggle:hover {background-color:#fff}
+.resize {float:right; height:32px; width:32px; background:url(/resize.gif) 15px 15px no-repeat; cursor:s-resize}
+#editor {cursor:text; margin:10px}
+
+/* confirm box style */
+#backdrop {
+	height:100%;
+	width:100%;
+	position:fixed;
+	background: rgba(0,0,0,0.6);
+	top:0px;
+	left:0px;
+	z-index:9999999;
+	display:none;
+}
+#confirm {
+	background:#fff;
+	position:fixed;
+	z-index:9999999;
+	padding:20px;
+	top:50%;
+	margin-top:-160px;
+	left:50%;
+	margin-left:-200px;
+	display:none;
+}
+#confirm a {
+	display:inline-block;
+	padding:20px 30px;
+	text-decoration:none;
+	color:#333;
+	width:25%;
+	text-align:center;
+	font-family:'Open Sans',Arial, Sans-serif;
+}
+#confirm a:first-of-type {
+	margin-right:3%;
+	border:1px solid #333;
+}
+#confirm a:last-of-type {
+	margin-left:4%;
+	background:#c0392b;
+	color:#fff;
+	border:1px solid #fff;
+}
+
+#new-image p {
+	width: 80%;
+	margin: 40px auto;
 }

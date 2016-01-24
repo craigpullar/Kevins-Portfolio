@@ -1,22 +1,38 @@
 <template name="gallery">
 	<div class="result-item" >
-		<div class='img card'>
+		<div class='img card' style="background:url({{ getImage.url }}); background-size:cover; background-position:center;">
+			<div class="fill"></div>
 			<h1>{{title}}</h1>
 		</div>
 	</div>
 </template>
 <template name="gallery_full">
-	<div class="back-fill"></div>
-	<div class="fullscreen_image"></div>
+	{{ > photoswipe }}
 	<h1 id="gallery-title">{{gallery.title}}</h1>
+
 	<div class="gallery-container">
+		<div class="grid-sizer"></div>
 		{{#each images}}
-		{{> image}}
+		<div class="masonry-item">
+			<div class="clicker cover"></div>
+			<img class="card gallery" id='{{_id}}' src="/kevin.jpg" data-index="{{@index}}" data-src="{{image.url store='images' uploading='/images/uploading.gif' storing='/images/storing.gif'}}"/>
+		</div>
 		{{/each}}
 	</div>
+
 </template>
-<template name="image">
-	<div class="masonry-item">
-		<img class="card" src="{{image.url store='images' uploading='/images/uploading.gif' storing='/images/storing.gif'}}"/>
-	</div>
+<template name="galleryLogin">
+	<form id="galleryLogin" class="login card">
+		<h1>Enter the pass-code</h1>
+		<div id="message"><p>Incorrect pass code</p></div>
+		<input type="password" />
+		<button type="button" class="submit">View gallery</button>
+	</form>
+</template>
+
+<template name="customer_gallery">
+	<h1 id="gallery-title">Customer Galleries</h1>
+	{{#each Galleries}}
+	{{> gallery}}
+	{{/each}}
 </template>

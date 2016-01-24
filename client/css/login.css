@@ -6,7 +6,9 @@ form.login {
 	margin-top:-100px;
 	left:50%;
 	margin-left:-25%;
-	padding:20px 0px;
+	padding:20px 0px 50px 0px;
+	border:1px solid #A4A1A1;
+	background:#fff;
 }
 #message {
 	width:45%;
@@ -20,4 +22,8 @@ form.login {
 	color:#fff;
 	padding:5px;
 	font-size:0.8em;
+}
+#back.login{
+	background:#559e83;
+	background-repeat: repeat;
 }

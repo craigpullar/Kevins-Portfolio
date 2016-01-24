@@ -1,36 +1,75 @@
 
-
-Galleries = new Mongo.Collection("galleries");
-Images = new FS.Collection("images", {
-	stores: [new FS.Store.FileSystem("images",{path: './public/uploads'})]
-});
-GalleryImages = new Mongo.Collection("gallery_images");
-
 if(Meteor.isClient) {
 	Meteor.subscribe("gallery_images");
 	Meteor.subscribe("galleries");
 	Meteor.subscribe("images");
+
+	/* ------------ */
+	/* GALERY LOGIN */
+	/* ------------ */
+	Template.galleryLogin.events({
+		"click #galleryLogin > button" : function () {
+			$('#message').hide();
+			if($('#galleryLogin > input[type="password"]').val() == this.gallery.password){
+				Session.set(this._id, true);
+				Router.go('/view-gallery/' + this._id);
+
+			}
+			else  {
+				$('#message').fadeIn();
+			}
+		},
+		"keypress input[type='password']" : function(event) {
+			if (event.which === 13) {
+				event.preventDefault();
+				$('#message').hide();
+				if($('#galleryLogin > input[type="password"]').val() == this.gallery.password){
+					Session.set(this._id, true);
+					Router.go('/view-gallery/' + this._id);
+
+				}
+				else  {
+					$('#message').fadeIn();
+				}
+			}
+		}
+	});
+
+	/* -------------------- */
+	/* LANDSCAPE GALLERY JS */
+	/* -------------------- */
+
+	Template.landscape_galleries.helpers({
+		Galleries: function () {
+			return Galleries.find({type: "landscape", private : false, image_count: {$gt: 0}}, {sort: {createdAt: -1}});
+		},
+	});
+
+
+	/* ------------------- */
+	/* CUSTOMER GALLERY JS */
+	/* ------------------- */
+	Template.customer_gallery.helpers ({
+		Galleries: function () {
+			return Galleries.find({private : true, image_count: {$gt: 0}}, {sort: {createdAt: -1}});
+		},
+	});
+
 	/*------------*/
 	/* WEDDINGS JS */
 	/*------------*/
-	Template.admin_weddings.events({
-		"click a#add_gallery_button": function() {
-			Router.go('/admin/new-gallery/wedding');
-		}
-	});
-	Template.admin_weddings.helpers({
-		Galleries: function () {
-			return Galleries.find({type: "wedding"}, {sort: {createdAt: -1}});
-		}
-	});
 	Template.wedding_galleries.helpers({
 		Galleries: function () {
-			return Galleries.find({type: "wedding",image_count: {$gt: 0}}, {sort: {createdAt: -1}});
+			return Galleries.find({type: "wedding", private : false, image_count: {$gt: 0}}, {sort: {createdAt: -1}});
 		},
 	});
-	Template.wedding_galleries.events({
+	Template.gallery.events({
 		"click .img" : function() {
-			Router.go('/view-gallery/' + this._id);
+			if(!this.private)
+				Router.go('/view-gallery/' + this._id);
+			else {
+				Router.go('/gallery-login/' + this._id);
+			}
 		}
 	});
 
@@ -38,21 +77,9 @@ if(Meteor.isClient) {
 	/*-------------*/
 	/* POTRAITS JS */
 	/*-------------*/
-	Template.admin_portraits.events({
-		"click a#add_gallery_button": function() {
-			Router.go('/admin/new-gallery/portrait');
-		}
-
-	});
-
-	Template.admin_portraits.helpers({
-		Galleries: function () {
-			return Galleries.find({type: "portrait"}, {sort: {createdAt: -1}});
-		}
-	});
 	Template.portrait_galleries.helpers({
 		Galleries: function () {
-			return Galleries.find({type: "portrait",image_count: {$gt: 0}}, {sort: {createdAt: -1}});
+			return Galleries.find({type: "portrait", private : false, image_count: {$gt: 0}}, {sort: {createdAt: -1}});
 		},
 	});
 	Template.portrait_galleries.events({
@@ -64,48 +91,6 @@ if(Meteor.isClient) {
 	/*------------*/
 	/* GALLERY JS */
 	/*------------*/
-	Template.new_gallery.events ({
-		"submit form#add": function(event) {
-			event.preventDefault();
-			var title = event.target.title.value;
-			var parts = location.href.split('/');
-			var type = parts.pop();
-			Galleries.insert({
-				title: title,
-				createdAt: new Date(),
-				type: type,
-        		image_count: 0, // current time
-        	});
-
-			Router.go('admin/'+type+'s');
-		},
-		"submit form#edit": function(event) {
-			event.preventDefault();
-			var title = event.target.title.value;
-			var parts = location.href.split('/');
-			var id = parts.pop();
-			var type = Galleries.findOne({_id: _id}).type;
-			Galleries.update(id, {
-				$set: {title: title}
-			});
-			Router.go('admin/'+type+'s');
-		}
-
-
-	});
-	Template.admin_gallery_row.events({
-		"click td.delete": function () {
-			Galleries.remove(this._id);
-		},
-		"click td.edit": function() {
-			Router.go('/admin/edit-gallery/'+this._id);
-		},
-		"click a.goToGallery": function(event) {
-			event.preventDefault();
-			Router.go('/admin/view-gallery/' + this._id );
-		}
-	});
-
 	Template.gallery.helpers({
 		getImage : function() {	
 			var image = GalleryImages.find({gallery_id : this._id}).fetch()[0].image;
@@ -114,88 +99,63 @@ if(Meteor.isClient) {
 	});
 
 
-	/*-----------*/
-	/* IMAGES JS */
-	/*-----------*/
-	Template.admin_gallery.rendered = function () {
-		var parts = location.href.split('/');
-		var gallery_id = parts.pop();
-
-		Session.set('gallery_id',gallery_id);
-	};
-	Template.admin_gallery.helpers({
-		imagesForGallery : function() {
-			return GalleryImages.find({gallery_id: Session.get('gallery_id')},{sort: {createdAt: -1}});
-		},
-		gallery : function() {
-			return Session.get('gallery_id');
-		}
-	});
-	Template.new_image.events({
-		"submit form": function(event) {
-			event.preventDefault();
-			var parts = location.href.split('/');
-			var gallery_id = parts.pop();
-			var files = event.target.files.files;
-			console.log(files);
-			for (var i = 0, ln = files.length; i < ln; i++) {
-				var file = files[i];
-				var fileObj = Images.insert(file);
-				GalleryImages.insert({
-					gallery_id: gallery_id,
-					image: fileObj,
-					createdAt: new Date(),
-				});
-			}
-			var current_image_count = Galleries.findOne({_id : gallery_id}).image_count;
-			Galleries.update(gallery_id, {
-				$set: {image_count: current_image_count+files.length}
-			});
-			Router.go("/admin/view-gallery/"+gallery_id)
-		}
-
-	});
-	Template.view_image.helpers({
-		getImage : function(){
-			var parts = location.href.split('/');
-			var id = parts.pop();
-			return Images.findOne({_id: id});
-		}
-	});
-	Template.admin_image_row.events({
-		"click td.delete": function () {
-			Images.remove(this.image._id);
-			GalleryImages.remove(this._id);
-			var parts = location.href.split('/');
-			var gallery_id = parts.pop();
-			var current_image_count = Galleries.findOne({_id : gallery_id}).image_count;
-			Galleries.update(gallery_id, {
-				$set: {image_count: current_image_count-1}
-			});
-		},
-	});
-
 	/*----------------*
 	/*GALLERY FULL JS */
 	/*----------------*/
-	Template.gallery_full.events({
-		"click div.back-fill" : function () {
-			$("div.fullscreen_image").fadeOut();
-			$("div.back-fill").fadeOut();
-			$("#gallery-title").css("position","relative");
-			$(".gallery-container").css("position","relative");
-		}
+	var initSlideshow = function(index) {
+		var pswpElement = document.querySelectorAll('.pswp')[0];
+
+// build items array
+var items = [];
+$('img.gallery').each(function(){
+	var src = $(this).attr('src');
+	var tempImage = new Image();
+	tempImage.src = src;
+	var image = {'src':src, 'w':tempImage.width, 'h': tempImage.height };
+	items.push(image);
+});
+
+// define options (if needed)
+var options = {
+    // optionName: 'option value'
+    // for example:
+    index: index// start at first slide
+};
+
+// Initializes and opens PhotoSwipe
+var gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
+gallery.init();
+}
+
+Template.gallery_full.events({
+	"click img" : function(event) {
+		initSlideshow($(event.target).parent().index()-1);
+	},
+	"click .clicker" : function(event) {
+		$(event.target).next('img').click();
+	}
+
+});
+Template.gallery_full.rendered = function() {
+	//IF PRIVATE && SESSION VAIRABLE NOT SET TAKE THEM TO GALLERY LOGIN
+	if (this.data.gallery.private && !Session.get(this.data._id)) Router.go('/gallery-login/' + this.data._id);
+	$('.gallery-container').imagesLoaded().progress( function(){
+		$('.gallery-container').masonry({
+			columnWidth: '.grid-sizer',
+			itemSelector: '.masonry-item',
+			percentPosition: true
+		});
 	});
-	Template.image.events({
-		"click img" : function(event) {
-			// console.log($(evt.target).html());
-			$("#gallery-title").css("position","fixed");
-			$(".gallery-container").css("position","fixed");
-			$("div.fullscreen_image").fadeIn();
-			$("div.fullscreen_image").html($(event.target).clone());
-			$("div.back-fill").fadeIn();
-		}
+	$("img.gallery").unveil(50, function() {
+		$('.gallery-container').imagesLoaded().progress( function(){
+			$('.gallery-container').masonry({
+				columnWidth: '.grid-sizer',
+				itemSelector: '.masonry-item',
+				percentPosition: true
+			});
+		});
 	});
+};
 
 
 }

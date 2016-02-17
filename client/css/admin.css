@@ -204,7 +204,7 @@ body#editor {margin:0; margin:25px; margin-left:10%; font:12px 'Open Sans';}
 #editor {cursor:text; margin:10px}
 
 /* confirm box style */
-#backdrop {
+#backdrop, .overlay {
 	height:100%;
 	width:100%;
 	position:fixed;
@@ -214,7 +214,7 @@ body#editor {margin:0; margin:25px; margin-left:10%; font:12px 'Open Sans';}
 	z-index:9999999;
 	display:none;
 }
-#confirm {
+#confirm, .edit_container {
 	background:#fff;
 	position:fixed;
 	z-index:9999999;
@@ -225,7 +225,7 @@ body#editor {margin:0; margin:25px; margin-left:10%; font:12px 'Open Sans';}
 	margin-left:-200px;
 	display:none;
 }
-#confirm a {
+#confirm a, .edit_container a {
 	display:inline-block;
 	padding:20px 30px;
 	text-decoration:none;
@@ -248,4 +248,31 @@ body#editor {margin:0; margin:25px; margin-left:10%; font:12px 'Open Sans';}
 #new-image p {
 	width: 80%;
 	margin: 40px auto;
+}
+.edit_container input {
+	width:75%;
+	padding:20px;
+}
+.edit_container a {
+	display: block;
+	padding: 14px 30px;
+	text-decoration: none;
+	color: #333;
+	width: 25%;
+	float: right;
+	text-align: center;
+	font-family: 'Open Sans',Arial, Sans-serif;
+	line-height: 30px;
+	border:1px solid #333;
+	width:auto;
+}
+.edit_container a:hover {
+	background:#333;
+	color:#fff;
+}
+
+.edit_container {
+	width:500px;
+	margin-left:-250px;
+	
 }

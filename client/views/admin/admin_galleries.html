@@ -64,18 +64,47 @@
 	<table class='blog'>
 		<th>Image</th>
 		<th>Date</th>
+		{{#if isLandscape}}
+		<th>Edit Title</th>
+		{{/if}}
 		<th>Delete Action</th>
 		<th>Uploaded</th>
+
 		{{#each imagesForGallery}}
+		{{#if isLandscape}}
+		{{> admin_landscape_image_row }}
+		{{else}}
 		{{> admin_image_row}}
+		{{/if}}
 		{{/each}}
+		{{#if isLandscape}}
+		<div class="overlay">
+		</div>
+		<div class="edit_container">
+			<input  data-id="0" placeholder="Enter a new title" type="text">
+			<a href="">Update</a>
+		</div>
+		{{/if}}
 	</table>
 </template>
 <template name="admin_image_row">
 	<tr>
 		<td><a href='/admin/image/{{image._id}}' target="_blank">{{ image._id }}</a></td>
 		<td>{{formatDate createdAt}}</td>
-		<td class="delete">delete</td>
+		<td class="delete">Delete</td>
+		{{#if isUploaded }}
+		<td>Uploaded</td>
+		{{else}}
+		<td>Uploading</td>
+		{{/if}}
+	</tr>
+</template>
+<template name="admin_landscape_image_row">
+	<tr>
+		<td><a href='/admin/image/{{image._id}}' target="_blank">{{ title }}</a></td>
+		<td>{{formatDate createdAt}}</td>
+		<td class="edit">Edit</td>
+		<td class="delete">Delete</td>
 		{{#if isUploaded }}
 		<td>Uploaded</td>
 		{{else}}

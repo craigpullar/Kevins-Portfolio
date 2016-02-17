@@ -179,6 +179,18 @@ if(Meteor.isClient) {
 		var gallery_id = parts.pop();
 
 		Session.set('gallery_id',gallery_id);
+		var galleries =  Galleries.find({type: "landscape"}, {sort: {createdAt: -1}}).fetch();
+		Session.set('isLandscape',false);
+		for(var i = 0; i < galleries.length;i++){
+			var gallery = galleries[i];
+
+			if (gallery._id == Session.get('gallery_id')){
+				// console.log('is landscape');
+				Session.set('isLandscape',true);
+			}
+		}
+
+
 	};
 	Template.admin_gallery.helpers({
 		imagesForGallery : function() {
@@ -186,6 +198,10 @@ if(Meteor.isClient) {
 		},
 		gallery : function() {
 			return Session.get('gallery_id');
+		},
+		isLandscape: function(){
+			return Session.get('isLandscape');
+			
 		}
 	});
 	Template.new_image.helpers({
@@ -222,7 +238,8 @@ if(Meteor.isClient) {
 			var parts = location.href.split('/');
 			var gallery_id = parts.pop();
 			var files = event.target.files.files;
-			var current_store = Session.get('current_slideshow_store')
+			var current_store = Session.get('current_slideshow_store');
+			var title = '';
 			for (var i = 0, ln = files.length; i < ln; i++) {
 				var file = files[i];
 				if (gallery_id == 'slideshow') {
@@ -233,28 +250,32 @@ if(Meteor.isClient) {
 
 				}else {
 					var fileObj = Images.insert(file);
+					title = fileObj.name();
+					title = title.slice(0, -4);
 					fileObj.name(fileObj._id);
-				// Images.update({_id: fileObj._id}, {$set: {'metadata.name': "PEWDS"}});
-				GalleryImages.insert({
-					gallery_id: gallery_id,
-					image: fileObj,
-					createdAt: new Date(),
-				});
+					Images.update({_id: fileObj._id}, {$set: {'metadata.name': title}});
+
+					GalleryImages.insert({
+						gallery_id: gallery_id,
+						image: fileObj,
+						title: title,
+						createdAt: new Date(),
+					});
+				}
+
 			}
-
+			if (gallery_id == 'slideshow') {
+				Router.go("/admin/slideshow");
+			}else {
+				var current_image_count = Galleries.findOne({_id : gallery_id}).image_count;
+				Galleries.update(gallery_id, {
+					$set: {image_count: current_image_count+files.length}
+				});
+				Router.go("/admin/view-gallery/"+gallery_id);
+			}
 		}
-		if (gallery_id == 'slideshow') {
-			Router.go("/admin/slideshow");
-		}else {
-			var current_image_count = Galleries.findOne({_id : gallery_id}).image_count;
-			Galleries.update(gallery_id, {
-				$set: {image_count: current_image_count+files.length}
-			});
-			Router.go("/admin/view-gallery/"+gallery_id);
-		}
-	}
 
-});
+	});
 	Template.view_image.helpers({
 		getImage : function(){
 			var parts = location.href.split('/');
@@ -285,7 +306,49 @@ if(Meteor.isClient) {
 			
 		},
 	});
+	Template.admin_landscape_image_row.events({
+		"click td.edit": function () {
+			$('.overlay').fadeIn();
+			$('.edit_container').fadeIn();
+			$('.edit_container input').val(this.title);
+			$('.edit_container input').attr('data-id', this._id);
+		},
 
+	});
+	Template.admin_landscape_image_row.helpers({
+		"isUploaded" : function() {
+			var image = GalleryImages.findOne({_id : this._id}).image;
+			return image.isUploaded();
+		},
+
+	});
+
+	Template.admin_gallery.events({
+		"click .overlay" : function(){
+			$('.overlay').fadeOut();
+			$('.edit_container').fadeOut();
+			$('.edit_container input').val('');
+			$('.edit_container input').attr('data-id', '0');
+		},
+		"click .edit_container a" : function(){
+			$('.overlay').fadeOut();
+			$('.edit_container').fadeOut();
+			var id = $('.edit_container input').attr('data-id');
+			var title = $('.edit_container input').val();
+			/* UPDATE FUNCTION HERE */
+			GalleryImages.update({_id: id}, {$set: {title: title}});
+			var image = GalleryImages.findOne({_id : id}).image;
+
+			Images.update({_id: image._id}, {$set: {'metadata.name': title}});
+			image = Images.findOne({_id : image._id});
+			GalleryImages.update({_id: id}, {$set: {image: image}});
+			
+
+			/* END */
+			$('.edit_container input').val('');
+			$('.edit_container input').attr('data-id', '0');
+		}
+	});
 
 	/* ######### */
 	/* SLIDESHOW */

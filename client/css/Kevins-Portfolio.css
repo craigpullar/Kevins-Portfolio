@@ -245,9 +245,29 @@ div.back-fill {
   /*  width:auto;*/
   width: 24%;
   box-sizing: border-box;
-  float: left; 
   padding: 1%;
   /*  height:200px;*/
+  overflow:hidden;
+}
+.masonry-item h1.title {
+  position:relative;
+  width:100%;
+  height:100%;
+  line-height: 30px;
+  text-align:center;
+  color:#333;
+  font-size:1em;
+  font-weight: 300;
+  background:#fff;
+  min-height:30px;
+  top:-15px;
+  overflow: hidden;
+  transition:all 0.2s ease-in;
+  padding:10px 0px;
+  border-bottom:1px solid #ccc;
+  border-left:1px solid #ccc;
+  border-right:1px solid #ccc;
+  box-sizing:border-box;
 }
 a.slidesjs-next.slidesjs-navigation {
   display: none;

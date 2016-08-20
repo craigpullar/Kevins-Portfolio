@@ -313,6 +313,20 @@ if(Meteor.isClient) {
 			$('.edit_container input').val(this.title);
 			$('.edit_container input').attr('data-id', this._id);
 		},
+		"click td.delete": function () {
+			var image = this;
+			confirm(function(event){
+				Images.remove(image.image._id);
+				GalleryImages.remove(image._id);
+				var parts = location.href.split('/');
+				var gallery_id = parts.pop();
+				var current_image_count = Galleries.findOne({_id : gallery_id}).image_count;
+				Galleries.update(gallery_id, {
+					$set: {image_count: current_image_count-1}
+				});
+			});
+			
+		}
 
 	});
 	Template.admin_landscape_image_row.helpers({

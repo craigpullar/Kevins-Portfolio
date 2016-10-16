@@ -11,6 +11,7 @@ if(Meteor.isServer) {
 	Posts = new Mongo.Collection("posts");
 	Galleries = new Mongo.Collection("galleries");
 	GalleryImages = new Mongo.Collection("gallery_images");
+	Dictionary = new Mongo.Collection('dictionary');
 
 	Images = new FS.Collection("images", {
 		stores: [
@@ -42,6 +43,14 @@ if(Meteor.isServer) {
 			return true;
 		}
 	});
+	Dictionary.allow({
+		'insert': function () {
+			return true;
+		}, 
+		'update': function () {
+			return true;
+		}, 
+	});
 
 	/*--------------------------*/
 	/* PUBLISH DATA FROM SERVER */
@@ -64,6 +73,9 @@ if(Meteor.isServer) {
 	});
 	Meteor.publish('posts', function() {
 		return Posts.find(); 
+	});
+	Meteor.publish('dictionary', function() {
+		return Dictionary.find(); 
 	});
 }
 

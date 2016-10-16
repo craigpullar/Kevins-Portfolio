@@ -1,17 +1,29 @@
 <template name="admin_slideshow">
 	<a id="landscape" href="/admin/new-image/slideshow" class="active ghost-button">Landscape images</a>
 	<a id="portrait" href="/admin/new-image/slideshow" class="ghost-button">Portrait images</a>
+	<a id="intro" href="/admin/slideshow/intro" class="ghost-button">Edit intro</a>
 	<br><br><br>
-	<a id="add_image_button" href="/admin/new-image/slideshow" class="ghost-button">+ Add Image</a>
-	<table class='blog'>
-		<th>Image</th>
-		<th>Date</th>
-		<th>Delete Action</th>
-		<th>Uploaded</th>
-		{{#each images}}
-		{{> admin_slideshow_row}}
-		{{/each}}
-	</table>
+	<div class="gallery_container">
+		<a id="add_image_button" href="/admin/new-image/slideshow" class="ghost-button">+ Add Image</a>
+		<table class='blog'>
+			<th>Image</th>
+			<th>Date</th>
+			<th>Delete Action</th>
+			<th>Uploaded</th>
+			{{#each images}}
+			{{> admin_slideshow_row}}
+			{{/each}}
+		</table>
+	</div>
+	<div class="intro_container">
+		<h1 class="center">Edit your introduction</h1>
+		<form action="" onsubmit='editor.post();'>
+			<textarea id="intro-content" name="content" placeholder='It was a sunday afternoon..'>{{{intro}}}</textarea>
+
+			<input type='submit' value='Edit' />
+		</form>
+	</div>
+	<p class="success">Intro has been updated</p>
 </template>
 <template name="admin_slideshow_row">
 	{{#if isImage store=getCurrentStore}}

@@ -2,6 +2,7 @@ if (Meteor.isClient) {
 
 	Meteor.subscribe("landscape_slideshow");
 	Meteor.subscribe("portrait_slideshow");
+	Meteor.subscribe("dictionary");
 
 	Template.AppLayout.rendered = function () {
 		$('html').height($(document).height());
@@ -13,6 +14,9 @@ if (Meteor.isClient) {
 		},
 		portraitImages : function(){
 			return PortraitSlideshow.find();
+		},
+		intro : function() {
+			return Dictionary.find({_id : 'intro'}).fetch()[0].content;
 		}
 	});
 

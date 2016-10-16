@@ -3,6 +3,8 @@ if(Meteor.isClient) {
 	Meteor.subscribe("gallery_images");
 	Meteor.subscribe("galleries");
 	Meteor.subscribe("images");
+	Meteor.subscribe("dictionary");
+
 
 	/* ------------ */
 	/* GALERY LOGIN */
@@ -91,7 +93,28 @@ if(Meteor.isClient) {
 		Galleries: function () {
 			return Galleries.find({type: "wedding", private : false, image_count: {$gt: 0}}, {sort: {createdAt: -1}});
 		},
+		
+
 	});
+
+	Template.pricing.helpers({
+		description: function() {
+		// console.log(Dictionary.find({_id : 'wedding_intro'}).fetch()[0].content);
+		return Dictionary.find({_id : 'wedding_intro'}).fetch()[0].content;
+	}
+});
+	Template.portrait_pricing.helpers({
+		description: function() {
+		// console.log(Dictionary.find({_id : 'wedding_intro'}).fetch()[0].content);
+		return Dictionary.find({_id : 'portrait_intro'}).fetch()[0].content;
+	}
+});
+	Template.landscape_pricing.helpers({
+		description: function() {
+		// console.log(Dictionary.find({_id : 'wedding_intro'}).fetch()[0].content);
+		return Dictionary.find({_id : 'landscape_intro'}).fetch()[0].content;
+	}
+});
 	Template.gallery.events({
 		"click .img" : function() {
 			if(!this.private)

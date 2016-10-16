@@ -1,47 +1,92 @@
 <template name="admin_weddings">
-	<a id="add_gallery_button" class="ghost-button">+ Add Gallery</a>
-	<table class="blog">
-		<th>Gallery Title</th>
-		<th>Date</th>
-		<th>Private</th>
-		<th>Password</th>
-		<th>Image Count</th>
-		<th>Edit Action</th>
-		<th>Delete Action</th>
-		{{#each Galleries}}
-		{{> admin_gallery_row}}
-		{{/each}}
-	</table>
+	<a id="gallery" class="active ghost-button">Gallery</a>
+	<a id="description" class="ghost-button">Pricing and info</a>
+	<br><br><br>
+	<div class="gallery_container">
+		<a id="add_gallery_button" class="ghost-button">+ Add Gallery</a>
+
+		<table class="blog">
+			<th>Gallery Title</th>
+			<th>Date</th>
+			<th>Private</th>
+			<th>Password</th>
+			<th>Image Count</th>
+			<th>Edit Action</th>
+			<th>Delete Action</th>
+			{{#each Galleries}}
+			{{> admin_gallery_row}}
+			{{/each}}
+		</table>
+	</div>
+	<div class="intro_container">
+		<h1 class="center">Edit your pricing and information</h1>
+		<form action="" onsubmit='editor.post();'>
+			<textarea id="intro-content" name="content" placeholder='It was a sunday afternoon..'>{{{description}}}</textarea>
+
+			<input type='submit' value='Edit' />
+		</form>
+	</div>
+	<p class="success">Information has been updated</p>
+
 </template>
 <template name="admin_landscape">
-	<a id="add_gallery_button" class="ghost-button">+ Add Gallery</a>
-	<table class="blog">
-		<th>Gallery Title</th>
-		<th>Date</th>
-		<th>Private</th>
-		<th>Password</th>
-		<th>Image Count</th>
-		<th>Edit Action</th>
-		<th>Delete Action</th>
-		{{#each Galleries}}
-		{{> admin_gallery_row}}
-		{{/each}}
-	</table>
+	<a id="gallery" class="active ghost-button">Gallery</a>
+	<a id="description" class="ghost-button">Pricing and info</a>
+	<br><br><br>
+	<div class="gallery_container">
+		<a id="add_gallery_button" class="ghost-button">+ Add Gallery</a>
+		<table class="blog">
+			<th>Gallery Title</th>
+			<th>Date</th>
+			<th>Private</th>
+			<th>Password</th>
+			<th>Image Count</th>
+			<th>Edit Action</th>
+			<th>Delete Action</th>
+			{{#each Galleries}}
+			{{> admin_gallery_row}}
+			{{/each}}
+		</table>
+	</div>
+	<div class="intro_container">
+		<h1 class="center">Edit your pricing and information</h1>
+		<form action="" onsubmit='editor.post();'>
+			<textarea id="intro-content" name="content" placeholder='It was a sunday afternoon..'>{{{description}}}</textarea>
+
+			<input type='submit' value='Edit' />
+		</form>
+	</div>
+	<p class="success">Information has been updated</p>
+
 </template>
 <template name="admin_portraits">
-	<a id="add_gallery_button" class="ghost-button">+ Add Gallery</a>
-	<table class="blog">
-		<th>Gallery Title</th>
-		<th>Date</th>
-		<th>Private</th>
-		<th>Password</th>
-		<th>Image Count</th>
-		<th>Edit Action</th>
-		<th>Delete Action</th>
-		{{#each Galleries}}
-		{{> admin_gallery_row}}
-		{{/each}}
-	</table>
+	<a id="gallery" class="active ghost-button">Gallery</a>
+	<a id="description" class="ghost-button">Pricing and info</a>
+	<br><br><br>
+	<div class="gallery_container">
+		<a id="add_gallery_button" class="ghost-button">+ Add Gallery</a>
+		<table class="blog">
+			<th>Gallery Title</th>
+			<th>Date</th>
+			<th>Private</th>
+			<th>Password</th>
+			<th>Image Count</th>
+			<th>Edit Action</th>
+			<th>Delete Action</th>
+			{{#each Galleries}}
+			{{> admin_gallery_row}}
+			{{/each}}
+		</table>
+	</div>
+	<div class="intro_container">
+		<h1 class="center">Edit your pricing and information</h1>
+		<form action="" onsubmit='editor.post();'>
+			<textarea id="intro-content" name="content" placeholder='It was a sunday afternoon..'>{{{description}}}</textarea>
+
+			<input type='submit' value='Edit' />
+		</form>
+	</div>
+	<p class="success">Information has been updated</p>
 </template>
 <template name="admin_gallery_row">
 	<tr>

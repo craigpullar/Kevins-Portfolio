@@ -9,6 +9,7 @@
 	Posts = new Mongo.Collection("posts");
 	Galleries = new Mongo.Collection("galleries");
 	GalleryImages = new Mongo.Collection("gallery_images");
+	Dictionary = new Mongo.Collection('dictionary');
 
 	Images = new FS.Collection("images", {
 		stores: [
@@ -37,6 +38,11 @@
 		}
 	});
 	Images.allow({
+		'insert': function () {
+			return true;
+		}
+	});
+	Dictionary.allow({
 		'insert': function () {
 			return true;
 		}

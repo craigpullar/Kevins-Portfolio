@@ -16,6 +16,9 @@
 .hidden {
   display:none!important;
 }
+.center {
+  text-align: center;
+}
 /* --------------------- */
 /* END OF HIDDEN CLASSES */
 /* --------------------- */

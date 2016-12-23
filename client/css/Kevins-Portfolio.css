@@ -20,13 +20,16 @@
   text-align: center;
 }
 /* --------------------- */
-/* END OF HIDDEN CLASSES */
+/* END OF HELPER CLASSES */
 /* --------------------- */
 @font-face {
   font-family: AlexBrush;
   src: url(AlexBrush-Regular.ttf);
 }
-
+.logo {
+  width:200px;
+  margin:-15px 0px 0px 30px;
+}
 div#back {
   background: url('/bg2.png');
   /* background-size: cover;*/
@@ -396,6 +399,7 @@ div#portrait-slides {
   #landscape-container {
     margin-top:20px;
   }
+
 
   /* ############### */
   /* SLIDESHOW STYLE */

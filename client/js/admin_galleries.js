@@ -53,8 +53,8 @@ Template.admin_landscape.events({
 		},
 		"submit .intro_container form" : function(event) {
 			event.preventDefault();
-			let value = event.target.content.value;
-			// console.log(value);
+			var value = event.target.content.value;
+
 			// Dictionary.insert({
 			// 	_id: 'landscape_intro',
 			// 	content : value
@@ -117,14 +117,14 @@ Template.admin_weddings.events({
 		},
 		"submit .intro_container form" : function(event) {
 			event.preventDefault();
-			let value = event.target.content.value;
-			console.log(value);
-			// Dictionary.insert({
-			// 	_id: 'wedding_intro',
-			// 	content : content
-			// });
+			var value = event.target.content.value;
+			// console.log(value);
+			Dictionary.insert({
+				_id: 'wedding_intro',
+				content : value
+			});
 			Dictionary.update({_id : 'wedding_intro'}, {$set: {content: value}} );
-			console.log(Dictionary.find({_id : 'wedding_intro'}).fetch()[0].content);
+			// console.log(Dictionary.find({_id : 'wedding_intro'}).fetch()[0].content);
 
 			$('p.success').fadeIn(500, function(){
 				$(this).delay(1500).fadeOut();
@@ -181,7 +181,7 @@ Template.admin_portraits.events({
 		},
 		"submit .intro_container form" : function(event) {
 			event.preventDefault();
-			let value = event.target.content.value;
+			var value = event.target.content.value;
 			// console.log(value);
 			// Dictionary.insert({
 			// 	_id: 'portrait_intro',
@@ -589,8 +589,12 @@ Template.admin_slideshow.events({
 		},
 		"submit .intro_container form" : function(event) {
 			event.preventDefault();
-			let content = event.target.content.value;
+			var content = event.target.content.value;
 			// console.log(content);
+			// Dictionary.insert({
+			// 	_id: 'intro',
+			// 	content : content
+			// });
 			Dictionary.update({_id : 'intro'}, {$set: {content: content}} );
 
 			$('p.success').fadeIn(500, function(){

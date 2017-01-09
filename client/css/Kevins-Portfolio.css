@@ -28,7 +28,7 @@
 }
 .logo {
   width:200px;
-  margin:-15px 0px 0px 30px;
+  margin:-25px 0px 0px 30px;
 }
 div#back {
   background: url('/bg2.png');
@@ -111,7 +111,14 @@ nav li a {
   padding-bottom: 6px;
   font-size:1.4em;
 }
-
+nav .phone {
+  font-weight:300;
+  font-size:10pt;
+  margin:0;
+  position:relative;
+  top:-55px;
+  left:55px;
+}
 nav li a:hover,
 nav li a#active {
   border-bottom: 4px solid #333;

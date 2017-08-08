@@ -1,4 +1,7 @@
 if(Meteor.isClient) {
+	// Template.LoginLayout.rendered = function() {
+	// 	console.log(my_secrets);
+	// }
 
 	/* LOGIN EVENTS */
 	Template.LoginLayout.events({
@@ -20,7 +23,7 @@ if(Meteor.isClient) {
 
 	/* CHECK LOGIN FUNCTION */
 	var checkLogin = function() {
-		passcode = "kevbob123";
+		passcode = secrets.pass;
 		user_passcode = $('form.login input').val();
 		if (passcode == user_passcode) {
 			Session.set('logged_in',true);
